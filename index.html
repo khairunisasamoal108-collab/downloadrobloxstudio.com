@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Roblox Captcha</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#ffd6ec,#ffc0cb);
+padding-top:40px;
+}
+
+.box{
+background:white;
+width:360px;
+margin:auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2{
+color:#ff4fa3;
+}
+
+.arrow{
+font-size:60px;
+margin:20px;
+transition:0.3s;
+}
+
+.small{
+transform:scale(0.6);
+}
+
+button{
+padding:12px 18px;
+margin:5px;
+border:none;
+border-radius:15px;
+background:#ff69b4;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff4fa3;
+}
+
+.progress{
+height:10px;
+background:#eee;
+border-radius:10px;
+overflow:hidden;
+margin-top:15px;
+}
+
+.bar{
+height:10px;
+width:0%;
+background:#ff69b4;
+transition:0.4s;
+}
+
+#download{
+display:none;
+margin-top:20px;
+}
+
+</style>
+
+<script>
+
+let level=0
+let jawaban=["kiri","atas","bawah","kanan","kanan"]
+let panah=["⬅️","⬆️","⬇️","➡️","➡️"]
+
+function mulai(){
+tampil()
+}
+
+function tampil(){
+document.getElementById("arrow").innerHTML=panah[level]
+}
+
+function cek(pilih){
+
+if(pilih==jawaban[level]){
+
+level++
+
+document.getElementById("arrow").classList.add("small")
+
+document.getElementById("bar").style.width=(level*20)+"%"
+
+setTimeout(()=>{
+document.getElementById("arrow").classList.remove("small")
+
+if(level<5){
+tampil()
+}else{
+document.getElementById("captcha").style.display="none"
+document.getElementById("download").style.display="block"
+}
+
+},400)
+
+}else{
+
+alert("❌ Salah! coba lagi")
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body onload="mulai()">
+
+<div class="box">
+
+<h2>🤖 Roblox Security Check</h2>
+<p>Pilih arah panah yang benar</p>
+
+<div id="captcha">
+
+<div id="arrow" class="arrow">➡️</div>
+
+<button onclick="cek('kiri')">⬅️</button>
+<button onclick="cek('kanan')">➡️</button>
+<button onclick="cek('atas')">⬆️</button>
+<button onclick="cek('bawah')">⬇️</button>
+
+<div class="progress">
+<div id="bar" class="bar"></div>
+</div>
+
+</div>
+
+<div id="download">
+
+<h3>Download Roblox Studio</h3>
+
+<a href="https://speed.hetzner.de/100MB.bin">
+<button>💖 Download 💖</button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bintang Background</title>
+
+<style>
+
+body{
+margin:0;
+background:#0f0f1a;
+overflow:hidden;
+}
+
+/* bintang */
+.star{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-20px);
+opacity:1;
+}
+100%{
+transform:translateY(100vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+for(let i=0;i<120;i++){
+
+let star=document.createElement("div")
+star.className="star"
+
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+
+star.style.animationDuration=(Math.random()*4+2)+"s"
+
+document.body.appendChild(star)
+
+}
+
+</script>
+
+</body>
+</html>
